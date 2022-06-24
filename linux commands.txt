@@ -1,0 +1,43 @@
+sudo -u postgres psql
+psql -h localhost -d postgres -U postgres -f events_5bebe93c25d705690ffbc758.sql
+sudo docker exec -it ds-postgres psql -U postgres
+sudo docker exec -i ds-postgres psql --username postgres < events_5bebe93c25d705690ffbc758.sql
+mysql --host="mysql_server" --user="user_name" --database="database_name" --password="user_password" < "path/to/sql/file.sql"
+
+sudo -u postgres psql -p 9700
+------------------------------------------------------------------------------------------
+
+RELATIONAL OPERATOR <>
+UPDATE X SET first_name='Arya' WHERE last_name='Tomar';
+
+------------------------------------------------------------------------------------------
+
+SELECT * FROM X OFFSET 5 LIMIT 5;
+SELECT * FROM X OFFSET 5 FETCH FIRST 5 ROW ONLY;
+
+SELECT * FROM X WHERE country_of_birth='China' OR country_of_birth='Brazil' OR country_of_birth='France';
+SELECT * FROM X WHERE country_of_birth IN ('China', 'Brazil', 'France');
+
+------------------------------------------------------------------------------------------
+
+SELECT * FROM X WHERE date_of_birth BETWEEN DATE '2000-01-01' AND '2015-01-01';
+
+SELECT * FROM X WHERE email LIKE '%@google.%';
+
+SELECT * FROM X WHERE email LIKE '_____@%';(_._._._._)
+
+------------------------------------------------------------------------------------------
+
+SELECT country_of_birth, COUNT(*) FROM X GROUP BY country_of_birth;
+
+SELECT country_of_birth, COUNT(*) FROM X GROUP BY country_of_birth HAVING COUNT(*) > 5 ORDER BY country_of_birth;
+
+------------------------------------------------------------------------------------------
+
+SELECT MAX(price) | MIN(price) | SUM(price) | ROUND(AVG(price)) FROM car;
+
+SELECT make, SUM(price) FROM car GROUP BY make;
+
+------------------------------------------------------------------------------------------
+
+SELECT COALESCE(email, 'Email Not Provided') FROM X;

@@ -1,0 +1,1 @@
+FETCH FORWARD 10000 FROM datasketch_cursor

@@ -1,0 +1,1 @@
+select upsertdatasketchrow(${key_input}, ${dt_input}, ${did_input}, ${skey_input}, ${skey_input}, ${p_input}, ${sketch_tbl})
