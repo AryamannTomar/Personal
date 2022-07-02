@@ -1,1 +1,0 @@
-select theta_sketch_get_estimate(theta_sketch_union(usercount)) from datasketches_events_${app_id} where dt BETWEEN ''${st_dt}'' AND ''${end_dt}''

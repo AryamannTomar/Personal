@@ -1,1 +1,0 @@
-select dt, theta_sketch_get_estimate(usercount) from datasketches_dailyactiveusers_${app_id} where dt BETWEEN ''${st_dt}'' AND ''${end_dt}''

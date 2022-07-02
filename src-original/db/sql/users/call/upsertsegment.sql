@@ -1,1 +1,0 @@
-select upsertdatasketchsegment(${key_input}, ${dt_input}, ${did_input}, ${segment}, ${p_input}, ${sketch_tbl}, ${activeuser_tbl}, ${stat_tbl})

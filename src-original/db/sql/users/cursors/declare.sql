@@ -1,1 +1,0 @@
-DECLARE datasketch_cursor CURSOR WITH HOLD FOR select key, dt, did, segment, p FROM ${events_tbl}
