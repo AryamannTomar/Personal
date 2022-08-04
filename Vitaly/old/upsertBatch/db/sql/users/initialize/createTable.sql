@@ -1,0 +1,1 @@
+create table tbl_${appid}(a text);

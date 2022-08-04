@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS cohort_${guid:value}_${appid:value}(type char, year INTEGER, initialdate TEXT, initialdateformat INTEGER, nextdate TEXT, nextdateformat INTEGER, platform SMALLINT, initialdatecount INTEGER, nextdatecount INTEGER)

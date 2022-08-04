@@ -1,0 +1,2 @@
+select count(*), sum(c.${timeUnit:value}_count) from (select EXTRACT(${timeUnit:value} from dt) unit, EXTRACT(year from dt) y, theta_sketch_get_estimate(theta_sketch_union(usercount)) ${timeUnit:value}_count 
+from datasketches_dailyactiveusers_${appid:value} where dt between ${startDate} and ${endDate} group by unit, y) c

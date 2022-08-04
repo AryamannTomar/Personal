@@ -1,0 +1,2 @@
+-- select dt, theta_sketch_get_estimate(theta_sketch_union(usercount)) from datasketches_dailyactiveusers_${appid} where dt BETWEEN ${startDate} AND ${endDate} GROUP BY dt ORDER BY dt
+select * from get_dau(${appid}, ${startDate}, ${endDate});

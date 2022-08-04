@@ -1,0 +1,1 @@
+CLOSE datasketch_cursor

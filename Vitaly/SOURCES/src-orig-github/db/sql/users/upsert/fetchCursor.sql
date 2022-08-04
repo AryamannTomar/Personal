@@ -1,0 +1,1 @@
+FETCH FORWARD ${count} FROM datasketch_cursor

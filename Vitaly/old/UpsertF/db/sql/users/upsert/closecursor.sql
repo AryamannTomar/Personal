@@ -1,0 +1,1 @@
+CLOSE test_cursor

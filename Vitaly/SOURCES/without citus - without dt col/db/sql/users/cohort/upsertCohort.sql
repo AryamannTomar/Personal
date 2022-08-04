@@ -1,0 +1,1 @@
+INSERT INTO cohort_${guid:value}_${appid:value} VALUES (${timeUnit}, ${year}, ${initialdate}, ${initialdateformat}, ${nextdate}, ${nextdateformat}, ${platform}, ${initialdatecount}, ${nextdatecount})

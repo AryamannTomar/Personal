@@ -1,0 +1,12 @@
+select count(*), sum(c.dau) from (select EXTRACT(day from dt) d, EXTRACT(year from dt) y, theta_sketch_get_estimate(theta_sketch_union(usercount)) dau from datasketches_dailyactiveusers_5bebe93c25d705690ffbc75811 where dt >= '2021-09-01' and dt < '2021-09-30' group by d, y) c;
+
+select count(*), sum(c.wau) from (select EXTRACT(week from dt) w, EXTRACT(year from dt) y, theta_sketch_get_estimate(theta_sketch_union(usercount)) wau from datasketches_dailyactiveusers_5bebe93c25d705690ffbc75811 where dt >= '2021-09-01' and dt < '2021-09-30' group by w, y) c;
+
+select count(*), sum(c.mau) from (select EXTRACT(month from dt) m, EXTRACT(year from dt) y, theta_sketch_get_estimate(theta_sketch_union(usercount)) mau from datasketches_dailyactiveusers_5bebe93c25d705690ffbc75811 where dt >= '2021-09-01' and dt < '2021-09-30' group by m, y) c;
+
+
+select count(*), sum(c.day) from
+                (select EXTRACT(day from dt) unit, EXTRACT(year from dt) y, theta_sketch_get_estimate(theta_sketch_union(usercount)) day
+                from datasketches_dailyactiveusers_5bebe93c25d705690ffbc75811
+                where dt >= '2021-09-01' and dt < '2021-09-30'
+                group by unit, y) c;

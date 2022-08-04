@@ -1,0 +1,43 @@
+select dt, theta_sketch_get_estimate(theta_sketch_union(usercount)) from datasketches_dailyactiveusers_5bebe93c25d705690ffbc75811 where dt BETWEEN '2021-09-03' AND '2021-09-04' GROUP BY dt ORDER BY dt
+
+select dt, theta_sketch_get_estimate(theta_sketch_union(usercount)) from datasketches_dailyactiveusers_${appid} where dt BETWEEN '${startDate}' AND '${endDate}' GROUP BY dt ORDER BY dt
+
+===========================================================================================
+
+CREATE OR REPLACE FUNCTION get_wau(appid text, dt1 text, dt2 text)
+	RETURNS TABLE (
+	theta_sketch_get_estimate INT
+) AS $$
+DECLARE 
+	var_r record;
+BEGIN 
+	FOR var_r IN EXECUTE format('select theta_sketch_get_estimate(theta_sketch_union(usercount)) from datasketches_events_%s where dt BETWEEN ''%s'' AND ''%s'' 
+', appid, dt1, dt2)
+	LOOP
+		theta_sketch_get_estimate := var_r.theta_sketch_get_estimate;
+		RETURN NEXT;
+	END LOOP;
+END; $$
+LANGUAGE 'plpgsql';
+
+==========================================================================================
+
+CREATE OR REPLACE FUNCTION get_dau(appid text, dt1 text, dt2 text)
+	RETURNS TABLE (
+	dt DATE,
+	theta_sketch_get_estimate INT
+) AS $$
+DECLARE 
+	var_r record;
+BEGIN 
+	FOR var_r IN EXECUTE format('select dt, theta_sketch_get_estimate(theta_sketch_union(usercount)) from datasketches_dailyactiveusers_%s where dt BETWEEN ''%s'' AND ''%s'' GROUP BY dt ORDER BY dt 
+', appid, dt1, dt2)
+	LOOP
+		dt := var_r.dt;
+		theta_sketch_get_estimate := var_r.theta_sketch_get_estimate;
+		RETURN NEXT;
+	END LOOP;
+END; $$
+LANGUAGE 'plpgsql';
+
+select * from get_dau('5bebe93c25d705690ffbc75811', '2021-09-03', '2021-09-04');

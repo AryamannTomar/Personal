@@ -1,0 +1,2 @@
+-- select theta_sketch_get_estimate(theta_sketch_union(usercount)) from datasketches_events_${appid} where dt BETWEEN ${startDate} AND ${endDate} 
+select * from get_wau(${appid}, ${startDate}, ${endDate});
